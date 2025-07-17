@@ -1,28 +1,23 @@
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:utilidades/src/models/person_model.dart';
 
 class SqliteService {
-
   static final SqliteService _instance = SqliteService._internal();
   factory SqliteService() => _instance;
   SqliteService._internal();
 
   static Database? _db;
 
-  Future<Database> get db async {
-    if (_db != null) return _db!;
-    _db = await _initDB('app.db');
+  Future<Database> get database async {
+    _db ??= await _initDB('app.db');
     return _db!;
   }
 
   Future<Database> _initDB(String name) async {
     final path = join(await getDatabasesPath(), name);
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-    );
+    return openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -34,14 +29,20 @@ class SqliteService {
       )
     ''');
   }
-    Future<int> insertPerson(PersonModel person) async {
-      final database = await db;
-      return database.insert("pessoas", person.toMap());
-    }
+
+  Future<int> insertPerson(PersonModel person) async {
+    final db = await database; 
+    return await db.insert('pessoas', person.toMap());
+  }
 
   Future<List<PersonModel>> getAllPersons() async {
-    final database = await db;
-    final result = await database.query('pessoas');
-    return result.map((e) => PersonMode.
+    final db = await database;
+    final result = await db.query('pessoas');
+    return result.map((map) => PersonModel.fromMap(map)).toList();
+  }
+
+  Future<void> deletePerson(int id) async {
+    final db = await database;
+    await db.delete('pessoas', where: 'id = ?', whereArgs: [id]);
   }
 }

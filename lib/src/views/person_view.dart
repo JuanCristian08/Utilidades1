@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:utilidades/src/controllers/person_controller.dart';
 
 class PersonView extends StatefulWidget {
   const PersonView({super.key});
@@ -8,8 +9,43 @@ class PersonView extends StatefulWidget {
 }
 
 class _PersonViewState extends State<PersonView> {
+  final controller = PersonController();
+  final nomeController = TextEditingController();
+  final idadeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Column(
+              children: [
+                TextField(
+                  controller: nomeController,
+                  decoration: const InputDecoration(labelText: "nome"),
+                ),
+                TextField(
+                  controller: idadeController,
+                  decoration: const InputDecoration(labelText: "idade"),
+                  keyboardType: TextInputType.number,
+                ),
+                const SizedBox(height: 10,),
+                ElevatedButton(onPressed: () {
+                  final nome = nomeController.text.trim();
+                  final idade = int.tryParse(idadeController.text.trim()) ?? 0;
+                  if(nome.isNotEmpty && idade > 0){
+                    controller.addPerson(nome, idade);
+                    nomeController.clear();
+                    idadeController.clear();
+                  }
+                }, child: Text("Cadastrar"))
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

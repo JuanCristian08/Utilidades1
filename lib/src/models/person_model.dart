@@ -3,7 +3,7 @@ class PersonModel {
   final String nome;
   final int idade;
 
-  PersonModel({required this.id, required this.nome, required this.idade});
+  PersonModel({ this.id, required this.nome, required this.idade});
 
   Map<String, dynamic> toMap() => {
     'id' : id,
