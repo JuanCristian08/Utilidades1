@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:utilidades/src/models/menu_model.dart';
 import 'package:utilidades/src/views/Person_view.dart';
 import 'package:utilidades/src/views/about_view.dart';
+import 'package:utilidades/src/views/bloc_example.view.dart';
 import 'package:utilidades/src/views/converter_view.dart';
 import 'package:utilidades/src/views/home_view.dart';
 import 'package:utilidades/src/views/product_list_page.dart';
@@ -44,5 +45,11 @@ final List<MenuModel> appMenuItems = [
     icon: Icons.settings,
     route: "/riverpood",
     page: ProviderScope(child: RiverpodExample()),
+  ),
+  MenuModel(
+    title: "Bloc",
+    icon: Icons.settings_backup_restore,
+    route: "/bloc",
+    page: BlocExampleView(),
   ),
 ];
