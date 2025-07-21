@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:utilidades/src/models/menu_model.dart';
 import 'package:utilidades/src/views/Person_view.dart';
 import 'package:utilidades/src/views/about_view.dart';
 import 'package:utilidades/src/views/converter_view.dart';
 import 'package:utilidades/src/views/home_view.dart';
 import 'package:utilidades/src/views/product_list_page.dart';
+import 'package:utilidades/src/views/riverpod_example.dart';
 
 final List<MenuModel> appMenuItems = [
   MenuModel(
@@ -36,5 +38,11 @@ final List<MenuModel> appMenuItems = [
     icon: Icons.people,
     route: "/produtos",
     page: PersonView(),
+  ),
+  MenuModel(
+    title: "Riverpod",
+    icon: Icons.settings,
+    route: "/riverpood",
+    page: ProviderScope(child: RiverpodExample()),
   ),
 ];
