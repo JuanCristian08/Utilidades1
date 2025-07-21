@@ -36,6 +36,12 @@ conceitos principais
 
 para usar preciamos instalar o pacote flutter_bloc
 
+bloc + cubit
+
+cubit é uma versão mais simples e direta do bloc, sem eventos, voce apenas
+chama metodos e emite estados diretamente
+
+
  */
 
 
