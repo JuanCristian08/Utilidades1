@@ -59,4 +59,5 @@ class DefaultFirebaseOptions {
     projectId: 'utilidades-4e8f1',
     storageBucket: 'utilidades-4e8f1.firebasestorage.app',
   );
+
 }

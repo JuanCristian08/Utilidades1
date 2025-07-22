@@ -1,0 +1,5 @@
+//AUTENTICAÇÃO E CADASTRO USANDO FIREBASE
+
+class UsuarioModel {
+  
+}
